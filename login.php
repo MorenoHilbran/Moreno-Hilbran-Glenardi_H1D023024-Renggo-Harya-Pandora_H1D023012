@@ -1,9 +1,63 @@
+<?php
+include("connect.php");
+
+$isLogin = !isset($_GET['signup']);  // Tentukan apakah menampilkan form login atau signup
+
+// Memulai sesi
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($isLogin) {
+        // Proses login
+        $inputUsername = $_POST['username'];
+        $inputPassword = $_POST['password'];
+
+        // Menggunakan prepared statements untuk keamanan
+        $stmt = $connect->prepare("SELECT password FROM user WHERE username=?");
+        $stmt->bind_param("s", $inputUsername);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            // Verifikasi password
+            if (password_verify($inputPassword, $row['password'])) {
+                // Password benar, lakukan login
+                $_SESSION['username'] = $inputUsername;  // Menyimpan username di sesi
+                header("Location: home2.php");  // Redirect ke diagnose.php
+                exit();  // Penting untuk menghentikan eksekusi setelah redirect
+            } else {
+                // Password salah
+                echo "<script>alert('Username atau password salah.');</script>";
+            }
+        } else {
+            // Username tidak ditemukan
+            echo "<script>alert('Username atau password salah.');</script>";
+        }
+    } else {
+        // Proses signup
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+        $stmt = $connect->prepare("INSERT INTO user (username, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $username, $email, $password);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Pendaftaran berhasil! Silakan login.'); window.location.href='login.php';</script>";
+        } else {
+            echo "<script>alert('Pendaftaran gagal. Silakan coba lagi.');</script>";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Foodwise</title>
+    <title>Login - WeCare</title>
     <style>
         /* CSS Styles */
         html, body {
@@ -43,7 +97,6 @@
             flex-direction: column;
             justify-content: center;
         }
-        .hidden { display: none; }
         .title { font-size: 24px; font-weight: bold; }
         .subtitle { margin-bottom: 20px; }
         .input-field { margin-bottom: 20px; }
@@ -74,8 +127,6 @@
 </head>
 <body>
 
-<?php $isLogin = true; // Set to true for login form, false for signup form ?>
-
 <section class="container">
     <!-- Left Side - Image and Text -->
     <div class="side bg-teal">
@@ -93,62 +144,43 @@
             <!-- Login Form -->
             <h2 class="title">Selamat Datang!</h2>
             <p class="subtitle">Solusi Hidup Sehat</p>
-            <form action="home.php" method="POST">
+            <form method="POST">
                 <div class="input-field">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Masukkan Username">
+                    <input type="text" id="username" name="username" placeholder="Masukkan Username" required>
                 </div>
                 <div class="input-field">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan Password">
+                    <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
                 </div>
                 <button type="submit" class="btn">Login</button>
             </form>
-            <p>Don't have an account? <span class="text-link" onclick="toggleForm()">Sign up for free</span></p>
+            <p>Don't have an account? <a href="login.php?signup" class="text-link">Sign up for free</a></p>
 
         <?php else: ?>
             <!-- Signup Form -->
             <h2 class="title">Buat Akun Baru!</h2>
             <p class="subtitle">Bergabunglah bersama kami</p>
-            <form action="signup.php" method="POST">
+            <form method="POST">
                 <div class="input-field">
                     <label for="username">Nama Pengguna</label>
-                    <input type="text" id="username" name="username" placeholder="Masukkan Nama Pengguna">
+                    <input type="text" id="username" name="username" placeholder="Masukkan Nama Pengguna" required>
                 </div>
                 <div class="input-field">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Masukkan Email">
+                    <input type="email" id="email" name="email" placeholder="Masukkan Email" required>
                 </div>
                 <div class="input-field">
                     <label for="password">Kata Sandi</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan Kata Sandi">
+                    <input type="password" id="password" name="password" placeholder="Masukkan Kata Sandi" required>
                 </div>
                 <button type="submit" class="btn">Sign Up</button>
             </form>
-            <p>Already have an account? <span class="text-link" onclick="toggleForm()">Login here</span></p>
+            <p>Already have an account? <a href="login.php" class="text-link">Login here</a></p>
         <?php endif; ?>
     </div>
 
-    </section>
-<script>
-
-function loginRedirect() {
-        const loginForm = document.querySelector('form[action="home.php"]');
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            window.location.href = 'home.php';
-        });
-    }
-    // Toggle between Login and Sign Up forms
-    function toggleForm() {
-        const formContainer = document.getElementById('formContainer');
-        <?php $isLogin = !$isLogin; ?> // Toggle PHP variable
-        formContainer.classList.toggle('hidden');
-        window.location.reload(); // Reload to apply the form toggle
-    }
-    loginRedirect();
-</script>
+</section>
 
 </body>
 </html>
-

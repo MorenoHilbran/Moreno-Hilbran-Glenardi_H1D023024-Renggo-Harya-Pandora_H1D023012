@@ -1,4 +1,6 @@
 <?php
+
+include ("connect.php");
 // Fungsi untuk memeriksa apakah path saat ini sama dengan route tertentu
 function isActive($path) {
     return ($_SERVER['REQUEST_URI'] === $path) ? 'text-white font-bold' : '';
@@ -17,8 +19,8 @@ function isActive($path) {
         /* CSS Styles */
         body { margin:0; padding: 0; font-family: Arial, sans-serif; }
 
-        .navbar { display: flex; justify-content: space-between; align-items: center; margin-left:20px; background-color: white; color: #38b2ac; }
-        .brand { font-size: 10px; font-weight: bold; margin-left: 20px;  width: 200px; }
+        .navbar { display: flex; gap : 310px; align-items: center; margin-left: 20px;background-color: white; color: #38b2ac; }
+        .brand { font-size: 10px; font-weight: bold; margin-left: 20px; margin-right: 40px; width: 200px; }
         .menu { display: flex; gap: 20px; list-style: none; padding: 0; }
         .menu li a { text-decoration: none; }
         .menu li a.active { font-weight: bold; }
@@ -33,7 +35,7 @@ function isActive($path) {
     <!-- Menu Links -->
     <ul class="menu">
         <li>
-            <a href="home.php" class="<?php echo isActive('home.php'); ?>">Home</a>
+            <a href="home2.php" class="<?php echo isActive('home2.php'); ?>">Home</a>
         </li>
         <li>
             <a href="diagnose.php" class="<?php echo isActive('/diagnose'); ?>">Diagnose</a>
@@ -43,10 +45,15 @@ function isActive($path) {
         </li>
     </ul>
     <div class="flex space-x-2 mr-10">
-        <a href="login.php">
-            <button class="button">Login</button>
-            <button "px-1 py-2 rounded-md bg-white text-teal border border-black">Register</button>
-        </a>
+    <?php
+        session_start();
+        if (isset($_SESSION['username'])) {
+            echo '<h1 class="text-2xl font-bold mt-2 mr-2">Selamat Datang, ' . $_SESSION['username'] . '</h1>';
+        } else {
+            echo '';
+        }
+        ?>
+        <a href="login.php"><button class="button">Logout</button></a>
 
     </div>
 
@@ -130,3 +137,4 @@ function isActive($path) {
     ';
   }
 ?>
+
