@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include ("connect.php");
 // Fungsi untuk memeriksa apakah path saat ini sama dengan route tertentu
 function isActive($path) {
