@@ -1,52 +1,89 @@
 <?php
 include("connect.php");
 
-$isLogin = !isset($_GET['signup']);  // Tentukan apakah menampilkan form login atau signup
+$isLogin = !isset($_GET['signup']); // Tentukan apakah menampilkan form login atau signup
 
 // Memulai sesi
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Tangkap input dari form, pastikan aman
+    $inputUsername = isset($_POST['username']) ? $_POST['username'] : null;
+    $inputPassword = isset($_POST['password']) ? $_POST['password'] : null;
+
+    // Validasi input
     if ($isLogin) {
-        // Proses login
-        $inputUsername = $_POST['username'];
-        $inputPassword = $_POST['password'];
+        if ($inputUsername && $inputPassword) {
+            // 1. Periksa tabel user terlebih dahulu
+            $stmt = $connect->prepare("SELECT password FROM user WHERE username=?");
+            if (!$stmt) {
+                die("Error preparing statement for user: " . $connect->error);
+            }
+            $stmt->bind_param("s", $inputUsername);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        // Menggunakan prepared statements untuk keamanan
-        $stmt = $connect->prepare("SELECT password FROM user WHERE username=?");
-        $stmt->bind_param("s", $inputUsername);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            // Verifikasi password
-            if (password_verify($inputPassword, $row['password'])) {
-                // Password benar, lakukan login
-                $_SESSION['username'] = $inputUsername;  // Menyimpan username di sesi
-                header("Location: home2.php");  // Redirect ke diagnose.php
-                exit();  // Penting untuk menghentikan eksekusi setelah redirect
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                if (password_verify($inputPassword, $row['password'])) {
+                    // Login user berhasil
+                    $_SESSION['username'] = $inputUsername;
+                    header("Location: diagnose.php");
+                    exit();
+                } else {
+                    // Password salah untuk user
+                    echo "<script>alert('Password salah untuk user.');</script>";
+                }
             } else {
-                // Password salah
-                echo "<script>alert('Username atau password salah.');</script>";
+                // Login admin
+$stmt = $connect->prepare("SELECT password FROM admin WHERE username=?");
+if (!$stmt) {
+    die("Error preparing statement for admin: " . $connect->error);
+}
+$stmt->bind_param("s", $inputUsername);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    // Gunakan pencocokan teks biasa untuk admin
+    if ($inputPassword === $row['password']) {
+        // Login admin berhasil
+        $_SESSION['admin'] = $inputUsername;
+        header("Location: admin.php");
+        exit();
+    } else {
+        // Password salah untuk admin
+        echo "<script>alert('Password salah untuk admin.');</script>";
+    }
+} else {
+    // Username tidak ditemukan di tabel admin
+    echo "<script>alert('Username tidak ditemukan di user maupun admin.');</script>";
+}
             }
         } else {
-            // Username tidak ditemukan
-            echo "<script>alert('Username atau password salah.');</script>";
+            echo "<script>alert('Harap isi semua field untuk login.');</script>";
         }
     } else {
         // Proses signup
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $username = isset($_POST['username']) ? $_POST['username'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
+        $password = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : null;
 
-        $stmt = $connect->prepare("INSERT INTO user (username, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $password);
+        if ($username && $email && $password) {
+            $stmt = $connect->prepare("INSERT INTO user (username, email, password) VALUES (?, ?, ?)");
+            if (!$stmt) {
+                die("Error preparing statement for signup: " . $connect->error);
+            }
+            $stmt->bind_param("sss", $username, $email, $password);
 
-        if ($stmt->execute()) {
-            echo "<script>alert('Pendaftaran berhasil! Silakan login.'); window.location.href='login.php';</script>";
+            if ($stmt->execute()) {
+                echo "<script>alert('Pendaftaran berhasil! Silakan login.'); window.location.href='login.php';</script>";
+            } else {
+                echo "<script>alert('Pendaftaran gagal. Silakan coba lagi.');</script>";
+            }
         } else {
-            echo "<script>alert('Pendaftaran gagal. Silakan coba lagi.');</script>";
+            echo "<script>alert('Harap isi semua field untuk signup.');</script>";
         }
     }
 }
