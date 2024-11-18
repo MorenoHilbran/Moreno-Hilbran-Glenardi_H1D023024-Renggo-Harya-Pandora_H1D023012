@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2024 at 03:00 PM
+-- Generation Time: Nov 18, 2024 at 09:59 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -50,8 +50,20 @@ INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
 CREATE TABLE `laporan` (
   `id_laporan` int(11) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
+  `tanggal_periksa` datetime NOT NULL DEFAULT current_timestamp(),
   `diagnosa` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `laporan`
+--
+
+INSERT INTO `laporan` (`id_laporan`, `username`, `tanggal_periksa`, `diagnosa`) VALUES
+(1, 'ahmad', '2024-11-17 21:29:36', 'Aortic Dissection'),
+(2, 'ahmad', '2024-11-17 21:35:46', 'Perform ECG'),
+(3, 'ahmad', '2024-11-17 21:37:01', 'stable angina'),
+(4, 'Demas Herdinanda', '2024-11-17 21:49:27', 'Chronic Obstructive Pulmonary Disease (COPD)'),
+(5, 'Demas Herdinanda', '2024-11-18 14:30:39', 'hgbcdhfajbs  x mdbbbcb  xzb bxnbjsdfg bskajhw');
 
 -- --------------------------------------------------------
 
@@ -70,7 +82,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `email`, `password`) VALUES
-('ahmad', 'ahmad07@gmail.com', '$2y$10$FzUFwPMEjlwbRIfz5jDd4OTLAXNu17./Dh7bKMYtsjVJvoYVRhaJK');
+('ahmad', 'ahmad07@gmail.com', '$2y$10$FzUFwPMEjlwbRIfz5jDd4OTLAXNu17./Dh7bKMYtsjVJvoYVRhaJK'),
+('Demas Herdinanda', 'demas.herdinanda@mhs.unsoed.ac.id', '$2y$10$ruCr0vMkW1o7L946k0NkoeUOUIj6gGzJALufZ6.rWJ5MDDmMtBKPm'),
+('Khansa', 'sasa123@gmail.com', '$2y$10$QebSVipaqGgnqZi1B0Avm.OuhD4Wt75fXAcmvfZnl1d5AsPyxZ92u');
 
 --
 -- Indexes for dumped tables
@@ -96,6 +110,16 @@ ALTER TABLE `laporan`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `laporan`
+--
+ALTER TABLE `laporan`
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
