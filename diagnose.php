@@ -38,48 +38,51 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard - Chest Pain Diagnostic</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      line-height: 1.6;
-    }
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    .navbar { display: flex; gap: 400px; align-items: center; margin-left: 20px; background-color: white; color: #38b2ac; justify-content: space-between; }
+    .brand { font-size: 10px; font-weight: bold; margin-right: 40px; width: 200px; }
+    .menu { display: flex; gap: 20px; list-style: none; padding: 0; }
+    .menu li a { text-decoration: none; }
+    .menu li a.active { font-weight: bold; }
+    .button { background-color: #319795; color: white; padding: 10px; border-radius: 10px; font-weight: bold; border: none; margin-left: 80px; }
+    .button:hover { background-color: #2c7a7b; }
+
     .container {
-      margin-bottom: 20px;
+      padding: 20px;
     }
     .question-container {
       display: none;
       margin-bottom: 20px;
+      text-align: center;
     }
+
     .question-container.active {
       display: block;
+      text-align: center;
+      margin-top: 100px;
+      height: 30vh;
     }
+
     button {
       margin: 10px;
       padding: 10px 20px;
-      background-color: #007bff;
+      background-color:  #319795;
       color: #fff;
       border: none;
       cursor: pointer;
       border-radius: 5px;
     }
-    button:hover {
-      background-color: #0056b3;
-    }
     textarea {
       width: 100%;
-      height: 100px;
+      height: 200px;
       margin-bottom: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
+      padding: 10px;
+      border: 1px solid #ccc;
       border-radius: 5px;
     }
     button:hover {
@@ -95,11 +98,50 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
       margin-bottom: 10px;
       border-radius: 5px;
     }
+    h1 {
+        text-align: center;
+        font-size: 100px;
+        color: #38b2ac;
+        margin-top: 30px;
+    }
+    h2 {
+        text-align: center;
+        font-size: 40px;
+        padding: 20px;
+        margin-top: 30px;
+    }
+    h3 {
+        text-align: center;
+        font-size: 30px;
+        padding: 20px;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome, <?= $_SESSION['username'] ?>!</h1>
-  <h2>Chest Pain Diagnostic Decision Tree</h2>
+    
+<nav class="navbar">
+    <!-- Logo/Brand -->
+    <div><img src="assets/logo_base.png" class="brand" alt="WeCare""></div>
+    <!-- Menu Links -->
+    <ul class="menu">
+        <li>
+            <a href="home2.php" class="<?php echo isActive('home2.php'); ?>">Home</a>
+        </li>
+        <li>
+            <a href="diagnose.php" class="<?php echo isActive('/diagnose'); ?>">Diagnose</a>
+        </li>
+        <li>
+            <a href="riwayat.php" class="<?php echo isActive('riwayat.php'); ?>">Riwayat</a>
+        </li>
+    </ul>
+
+        <a href="login.php"><button class="button">Logout</button></a>
+    </div>
+</nav>
+
+<section class="border border-gray-400 width-full p-20">
+  <h1>Selamat Datang, <?= $_SESSION['username'] ?>!</h1>
+  <h2>Diagnosa Penyakit Dada dengan Decision Tree</h2>
 
   <!-- Decision Tree -->
   <div id="decision-tree">
@@ -173,12 +215,14 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
     </div>
   </div>
 
-  <div id="result" style="display: none;">
-    <h2>Diagnosis</h2>
-    <p id="diagnosis"></p>
-    <button onclick="restart()">Restart</button>
+  <div id="result" class="hidden">
+    <h2>Anda Didiagnosa:</h2>
+    <p class="text-center font-bold text-3xl mb-10" style="color: #38b2ac" id="diagnosis"></p>
+    <button style="display: block; margin: 0 auto;" class="center" onclick="restart()">Restart</button>
   </div>
+</section>
 
+<section class="flex py-16 mx-24">
   <script>
     let currentStep = 1;
 
@@ -219,8 +263,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
     <h3>Buat Laporan Baru</h3>
     <?php if (!empty($success)) echo "<p style='color:green;'>$success</p>"; ?>
     <form method="POST">
-      <label for="diagnosa">Diagnosa:</label><br>
-      <textarea name="diagnosa" id="diagnosa" required></textarea><br>
+      <textarea name="diagnosa" id="diagnosa" placeholder="Hasil Diagnosa" required></textarea><br>
       <button type="submit">Kirim Laporan</button>
     </form>
   </div>
@@ -228,6 +271,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
   <!-- User Report List -->
   <div class="laporan-list">
     <h3>Laporan Anda</h3>
+    <div class="overflow-y-scroll border border-gray-400" style="max-height: 600px;">
     <?php if (count($laporan) > 0): ?>
       <?php foreach ($laporan as $item): ?>
         <div class="laporan-item">
@@ -239,12 +283,13 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
       <p>Belum ada laporan.</p>
     <?php endif; ?>
   </div>
+</section>
 
-  <!-- Logout Button -->
-  <form method="POST" action="logout.php">
-    <button type="submit">Logout</button>
-  </form>
+<footer style="background-color: #38b2ac; color: white; display: block; position: relative; z-index: 10;">
+    <div class="container text-center">
+        <p>&copy; 2024 WeCare. All rights reserved.</p>
+    </div>
+</footer>
 
-  <a href="home.php" class="<?php echo isActive('/home'); ?>">Home</a>
 </body>
 </html>

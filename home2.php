@@ -12,6 +12,7 @@ function isActive($path) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
     <title>Home - WeCare</title>
@@ -19,8 +20,8 @@ function isActive($path) {
         /* CSS Styles */
         body { margin:0; padding: 0; font-family: Arial, sans-serif; }
 
-        .navbar { display: flex; gap : 310px; align-items: center; margin-left: 20px;background-color: white; color: #38b2ac; }
-        .brand { font-size: 10px; font-weight: bold; margin-left: 20px; margin-right: 40px; width: 200px; }
+        .navbar { display: flex; gap : 310px; align-items: center; margin-left: 20px; background-color: white; color: #38b2ac; justify-content: space-between; }
+        .brand { font-size: 10px; font-weight: bold; margin-right: 40px; width: 200px; }
         .menu { display: flex; gap: 20px; list-style: none; padding: 0; }
         .menu li a { text-decoration: none; }
         .menu li a.active { font-weight: bold; }
@@ -46,7 +47,6 @@ function isActive($path) {
     </ul>
     <div class="flex space-x-2 mr-10">
     <?php
-        session_start();
         if (isset($_SESSION['username'])) {
             echo '<h1 class="text-2xl font-bold mt-2 mr-2">Selamat Datang, ' . $_SESSION['username'] . '</h1>';
         } else {
@@ -72,14 +72,14 @@ function isActive($path) {
             <span class="mb-5"><b>dan rekomendasi pencegahan</b></span> yang tepat!
         </p>
         <a href="diagnose.php">
-        <button class="bg-white mt-10 py-3 px-6 text-2xl rounded-full shadow-md hover:shadow-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50" style="color: #38b2ac">
+        <button class="bg-white mt-10 py-3 px-6 text-2xl rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-50" style="color: #38b2ac">
             Diagnosa Sekarang!
         </button>
         </a>
     </div>
 </header>
 
-<section class="mx-24 py-16">
+<section class="mx-24 py-16 ">
     <h2 class="text-center text-4xl font-semibold p-8" style="color: #38b2ac;">
       OUR TEAM
     </h2>

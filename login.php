@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (password_verify($inputPassword, $row['password'])) {
                     // Login user berhasil
                     $_SESSION['username'] = $inputUsername;
-                    header("Location: diagnose.php");
+                    header("Location: home2.php");
                     exit();
                 } else {
                     // Password salah untuk user
