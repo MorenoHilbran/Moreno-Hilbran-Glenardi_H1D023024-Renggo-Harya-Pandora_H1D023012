@@ -1,0 +1,133 @@
+* {
+    font-family: 'ubuntu', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background-color: #38b2ac;
+    width: 260px;
+    padding: 24px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.main-content {
+    background-color: #FFFFFF;
+    flex-grow: 1;
+}
+
+.sidebar .description-header {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar .header .list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 8px;
+    background-color: aquamarine;
+    box-sizing: border-box;
+}
+
+.sidebar .header .list-item.active {
+    background-color: orange;
+}
+
+.sidebar .header .list-item .icon {
+    margin-right: 12px;
+}
+
+.sidebar .header .illustration {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px;
+    margin: 10px 0 22px 0;
+    box-sizing: border-box;
+}
+
+.sidebar .main .list-item .description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    
+}
+
+.sidebar .main .list-item .icon {
+    margin-right: 12px;
+}
+
+.sidebar .main .list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 5px;
+    border-radius: 8px;
+    width: 212px;
+    box-sizing: border-box;
+    margin-top:12px;
+}
+
+.sidebar .main .list-item:hover {
+    background: #FF9900;
+    transition: ease-in .2s;
+}
+
+.illustration{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.list-item-logout {
+    text-align: center;
+    justify-content: center;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 8px;
+    background-color: aquamarine;
+    box-sizing: border-box;
+}
+.list-item-logout .description{
+    color:white;
+}
+.chart-container {
+    max-width: 600px; /* Maksimal lebar container */
+    margin: 0 auto; /* Posisikan di tengah */
+    padding: 20px; /* Ruang dalam container */
+    height: auto; /* Tinggi disesuaikan otomatis */
+    margin-top:30px;
+}
+
+canvas {
+    display: block; /* Grafik responsif */
+    width: 100%; /* Grafik mengambil seluruh lebar container */
+    max-width: 100%; /* Pastikan tidak melebihi container */
+    height: auto; /* Tinggi mengikuti proporsi */
+    max-height: 400px; /* Batasi tinggi maksimal */
+}
