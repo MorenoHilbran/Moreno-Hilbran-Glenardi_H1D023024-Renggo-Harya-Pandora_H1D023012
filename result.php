@@ -69,7 +69,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
                 </div>
                 <div class="list-item flex items-center">
                     <img src="assets/profile.svg" alt="" class="icon w-6 h-6 ml-3">
-                    <a href="result.php" class="<?php echo isActive('daftarpasien.php'); ?>">
+                    <a href="daftarpasien.php" class="<?php echo isActive('daftarpasien.php'); ?>">
                         <span class="description ml-1">Daftar Pasien</span>
                     </a>
                 </div>
@@ -104,10 +104,10 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
 
     <!-- Tabel Laporan -->
     <div class="bg-white p-6 rounded shadow-lg">
-        <div class="overflow-x-auto">
-            <table class="table-auto w-full border-collapse border border-gray-300">
-                <thead>
-                    <tr class="bg-gray-200 text-left">
+        <div class="overflow-x-auto max-h-screen overflow-y-scroll">
+            <table class="table-auto w-full border-collapse border border-gray-400">
+                <thead class="sticky top-0 bg-gray-200">
+                    <tr class="text-left">
                         <th class="border border-gray-300 px-6 py-3">ID</th>
                         <th class="border border-gray-300 px-6 py-3">Username</th>
                         <th class="border border-gray-300 px-6 py-3">Hasil Diagnosa</th>
@@ -149,7 +149,6 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
             </table>
         </div>
     </div>
-</div>
 
       
    <script src="script.js"></script>

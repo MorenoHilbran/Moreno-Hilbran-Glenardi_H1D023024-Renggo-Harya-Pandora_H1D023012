@@ -14,38 +14,79 @@ function isActive($path) {
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
     <title>Home - WeCare</title>
     <style>
-        /* CSS Styles */
-        body { margin:0; padding: 0; font-family: Arial, sans-serif; }
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    .navbar { 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 20px;
+      background-color: white;
+      color: #38b2ac;
+    }
+    .brand { font-size: 10px; font-weight: bold; margin-right: 40px; width: 200px; }
+    .menu { display: flex; gap: 20px; list-style: none; padding: 0; }
+    .menu li a { text-decoration: none; }
+    .menu li a.active { font-weight: bold; }
+    .button { background-color: #319795; color: white; padding: 10px; border-radius: 10px; font-weight: bold; border: none; }
+    .button:hover { background-color: #2c7a7b; }
 
-        .navbar { display: flex; justify-content: space-between; align-items: center; margin-left:20px; background-color: white; color: #38b2ac; }
-        .brand { font-size: 10px; font-weight: bold; margin-left: 20px;  width: 200px; }
-        .menu { display: flex; gap: 20px; list-style: none; padding: 0; }
-        .menu li a { text-decoration: none; }
-        .menu li a.active { font-weight: bold; }
-        .button { background-color: #319795; color: white; padding: 10px; border-radius: 10px; font-weight: bold; border: none; }
-        .button:hover { background-color: #2c7a7b; }
-    </style>
+    .container {
+      padding: 20px;
+    }
+   
+    button {
+      margin: 10px;
+      padding: 10px;
+      background-color:  #319795;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+    h1 {
+        text-align: center;
+        font-size: 100px;
+        color: #38b2ac;
+        margin-top: 30px;
+    }
+    h2 {
+        text-align: center;
+        font-size: 40px;
+        padding: 20px;
+        margin-top: 30px;
+    }
+    h3 {
+        text-align: center;
+        font-size: 30px;
+        padding: 20px;
+    }
+  </style>
 </head>
-
+<body>
+    
 <nav class="navbar">
     <!-- Logo/Brand -->
     <div><img src="assets/logo_base.png" class="brand" alt="WeCare""></div>
     <!-- Menu Links -->
     <ul class="menu">
         <li>
-            <a href="home.php" class="<?php echo isActive('home.php'); ?>">Home</a>
+            <a href="home2.php" class="<?php echo isActive('home2.php'); ?>">Home</a>
         </li>
         <li>
-            <a href="diagnose.php" class="<?php echo isActive('/diagnose'); ?>">Diagnose</a>
+            <a href="diagnose.php" class="<?php echo isActive('diagnose.php'); ?>">Diagnose</a>
         </li>
         <li>
             <a href="riwayat.php" class="<?php echo isActive('riwayat.php'); ?>">Riwayat</a>
         </li>
     </ul>
-    <div class="flex space-x-2 mr-10">
+    <div class="flex">
         <a href="login.php">
-            <button class="button">Login</button>
-            <button "px-1 py-2 rounded-md bg-white text-teal border border-black">Register</button>
+            <button class="button ">Login</button>
+            <button class="button">Register</button>
         </a>
 
     </div>

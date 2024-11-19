@@ -20,7 +20,7 @@ function isActive($path) {
         /* CSS Styles */
         body { margin:0; padding: 0; font-family: Arial, sans-serif; }
 
-        .navbar { display: flex; gap : 310px; align-items: center; margin-left: 20px; background-color: white; color: #38b2ac; justify-content: space-between; }
+        .navbar { display: flex; align-items: center; margin-left: 20px; background-color: white; color: #38b2ac; justify-content: space-between; }
         .brand { font-size: 10px; font-weight: bold; margin-right: 40px; width: 200px; }
         .menu { display: flex; gap: 20px; list-style: none; padding: 0; }
         .menu li a { text-decoration: none; }
@@ -40,12 +40,13 @@ function isActive($path) {
             <a href="home2.php" class="<?php echo isActive('home2.php'); ?>">Home</a>
         </li>
         <li>
-            <a href="diagnose.php" class="<?php echo isActive('/diagnose'); ?>">Diagnose</a>
+            <a href="diagnose.php" class="<?php echo isActive('diagnose.php'); ?>">Diagnose</a>
         </li>
         <li>
             <a href="riwayat.php" class="<?php echo isActive('riwayat.php'); ?>">Riwayat</a>
         </li>
     </ul>
+
     <div class="flex space-x-2 mr-10">
         <?php if (isset($_SESSION['username'])): ?>
             <h1 class="text-2xl font-bold mt-2 mr-2">Selamat Datang, <?php echo $_SESSION['username']; ?></h1>

@@ -74,7 +74,7 @@ $totalHandledReports = ($resultHandledReports && mysqli_num_rows($resultHandledR
                 </div>
                 <div class="list-item flex items-center">
                     <img src="assets/profile.svg" alt="" class="icon w-6 h-6 ml-3">
-                    <a href="result.php" class="<?php echo isActive('daftarpasien.php'); ?>">
+                    <a href="daftarpasien.php" class="<?php echo isActive('daftarpasien.php'); ?>">
                         <span class="description ml-1">Daftar Pasien</span>
                     </a>
                 </div>

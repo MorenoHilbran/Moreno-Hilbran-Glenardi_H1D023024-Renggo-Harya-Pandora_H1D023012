@@ -99,7 +99,6 @@ $resultHistory = mysqli_stmt_get_result($stmt);
         text-align: center;
         font-size: 100px;
         color: #38b2ac;
-        margin-top: 30px;
     }
     h2 {
         text-align: center;
