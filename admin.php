@@ -66,26 +66,26 @@ $totalHandledReports = ($resultHandledReports && mysqli_num_rows($resultHandledR
                 <img src="assets/trial.png" alt="Illustration">
             </div>
             <div class="main">
-                <div class="list-item">
-                    <a href="admin.php">
-                        <img src="assets/Dashboard.svg" alt="" class="icon">
-                        <span class="description">Dashboard</span>
+                <div class="list-item flex items-center">
+                    <img src="assets/Dashboard.svg" alt="" class="icon ml-4">
+                    <a href="admin.php" class="<?php echo isActive('admin.php'); ?>">
+                        <span class="description ml-2">Dashboard</span>
                     </a>
                 </div>
-                <div class="list-item">
-                    <a href="daftarpasien.php">
-                        <img src="assets/Dashboard.svg" alt="" class="icon">
-                        <span class="description">Daftar Pasien</span>
+                <div class="list-item flex items-center">
+                    <img src="assets/profile.svg" alt="" class="icon w-6 h-6 ml-3">
+                    <a href="result.php" class="<?php echo isActive('daftarpasien.php'); ?>">
+                        <span class="description ml-1">Daftar Pasien</span>
                     </a>
                 </div>
-                <div class="list-item">
-                    <a href="result.php">
-                        <img src="assets/Dashboard.svg" alt="" class="icon">
-                        <span class="description">Hasil Diagnosa</span>
+                <div class="list-item flex items-center">
+                    <img src="assets/report.svg" alt="" class="icon ml-3">
+                    <a href="result.php" class="<?php echo isActive('result.php'); ?>">
+                        <span class="description ml-1">Hasil Diagnosa</span>
                     </a>
                 </div>
                 <div class="list-item-logout">
-                    <a href="logout.php">
+                    <a href="logout.php" class="text-red-500">
                         <span class="description">Logout</span>
                     </a>
                 </div>

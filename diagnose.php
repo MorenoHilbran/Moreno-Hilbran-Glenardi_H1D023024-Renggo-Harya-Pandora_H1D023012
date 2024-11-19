@@ -128,7 +128,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
             <a href="home2.php" class="<?php echo isActive('home2.php'); ?>">Home</a>
         </li>
         <li>
-            <a href="diagnose.php" class="<?php echo isActive('/diagnose'); ?>">Diagnose</a>
+            <a href="diagnose.php" class="<?php echo isActive('diagnose.php'); ?>">Diagnose</a>
         </li>
         <li>
             <a href="riwayat.php" class="<?php echo isActive('riwayat.php'); ?>">Riwayat</a>
@@ -142,78 +142,84 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
 <section class="border border-gray-400 width-full p-20">
   <h1>Selamat Datang, <?= $_SESSION['username'] ?>!</h1>
   <h2>Diagnosa Penyakit Dada dengan Decision Tree</h2>
-
-  <!-- Decision Tree -->
-  <div id="decision-tree">
-  <div class="question-container" id="step1">
-      <h3>1. Apakah pasien mengalami nyeri dada?</h3>
-      <button onclick="nextStep(2)">Yes</button>
-      <button onclick="nextStep(8)">No</button>
+<!-- Decision Tree -->
+<div id="decision-tree">
+    <div class="question-container" id="step1">
+        <h3>1. Apakah Anda merasakan nyeri di dada?</h3>
+        <button onclick="nextStep(2)">Yes</button>
+        <button onclick="nextStep(15)">No</button>
     </div>
-
     <div class="question-container" id="step2">
-      <h3>2. Apakah nyeri terjadi secara tiba-tiba, parah, terasa seperti robekan, dan menjalar ke punggung?</h3>
-      <button onclick="diagnosis('Aortic Dissection')">Yes</button>
-      <button onclick="nextStep(3)">No</button>
+        <h3>2. Apakah nyeri muncul tiba-tiba, sangat parah seperti robek, dan menjalar ke punggung?</h3>
+        <button onclick="diagnosis('Diseksi Aorta (Aortic Dissection)')">Yes</button>
+        <button onclick="nextStep(3)">No</button>
     </div>
-
     <div class="question-container" id="step3">
-      <h3>3. Apakah nyeri terasa seperti ditekan, berlangsung &gt;20 menit, menjalar ke lengan/rahang/punggung, dan disertai keringat, mual, atau sesak napas?</h3>
-      <button onclick="nextStep('3_1')">Yes</button>
-      <button onclick="nextStep(4)">No</button>
+        <h3>3. Apakah nyerinya seperti ditekan berat, berlangsung >20 menit, menjalar ke lengan, rahang, atau punggung, disertai keringat dingin, mual, atau sulit bernapas?</h3>
+        <button onclick="diagnosis('Serangan Jantung (Acute Coronary Syndrome)')">Yes</button>
+        <button onclick="nextStep(4)">No</button>
     </div>
-
-    <div class="question-container" id="step3_1">
-      <h3>3.1 Perform ECG:</h3>
-      <p>
-        If ST-elevation → Diagnosis: STEMI. Proceed with PCI/thrombolysis.<br>
-        If ST-depression → Diagnosis: NSTEMI/Unstable Angina. Measure troponin levels.<br>
-        Otherwise, evaluate for non-cardiac causes.
-      </p>
-    </div>
-
     <div class="question-container" id="step4">
-      <h3>4. Apakah nyeri terjadi saat aktivitas, reda dengan istirahat atau semprotan GTN, dan tidak menjalar?</h3>
-      <button onclick="diagnosis('Stable Angina')">Yes</button>
-      <button onclick="nextStep(5)">No</button>
+        <h3>4. Apakah nyeri muncul saat beraktivitas dan hilang saat istirahat atau setelah menggunakan semprotan nitrat?</h3>
+        <button onclick="diagnosis('Angina Stabil(Stable Angina)')">Yes</button>
+        <button onclick="nextStep(5)">No</button>
     </div>
-
     <div class="question-container" id="step5">
-      <h3>5. Apakah nyeri terlokalisir, tajam, dan memburuk saat ditekan atau bergerak?</h3>
-      <button onclick="diagnosis('Musculoskeletal Pain (Costochondritis)')">Yes</button>
-      <button onclick="nextStep(6)">No</button>
+        <h3>5. Apakah nyeri terasa tajam, terlokalisasi di satu titik, dan lebih sakit jika ditekan atau tubuh bergerak?</h3>
+        <button onclick="diagnosis('Nyeri Otot/Tulang (Costochondritis)')">Yes</button>
+        <button onclick="nextStep(6)">No</button>
     </div>
-
     <div class="question-container" id="step6">
-      <h3>6. Apakah nyeri terasa pleuritik (tajam, memburuk saat bernapas) dan disertai demam, batuk, atau sesak napas?</h3>
-      <button onclick="diagnosis('Pneumonia or Pulmonary Embolism')">Yes</button>
-      <button onclick="nextStep(7)">No</button>
+        <h3>6. Apakah nyeri bertambah saat bernapas dalam, disertai demam atau sesak napas?</h3>
+        <button onclick="diagnosis('Pneumonia atau Pulmonary Embolism')">Yes</button>
+        <button onclick="nextStep(7)">No</button>
     </div>
-
     <div class="question-container" id="step7">
-      <h3>7. Apakah nyeri terasa terbakar, terkait dengan makan atau posisi berbaring, dan membaik dengan antasida?</h3>
-      <button onclick="diagnosis('GERD or Peptic Ulcer Disease')">Yes</button>
-      <button onclick="nextStep(2)">No</button>
+        <h3>7. Apakah nyeri terasa panas, lebih buruk setelah makan atau saat berbaring, dan membaik dengan obat maag?</h3>
+        <button onclick="diagnosis('GERD atau Peptic Ulcer')">Yes</button>
+        <button onclick="nextStep(8)">No</button>
     </div>
-
     <div class="question-container" id="step8">
-      <h3>8. Apakah sesak napas terjadi mendadak, dengan hemoptysis (batuk berdarah) atau pembengkakan kaki unilateral?</h3>
-      <button onclick="diagnosis('Pulmonary Embolism')">Yes</button>
-      <button onclick="nextStep(9)">No</button>
+        <h3>8. Apakah Anda mengalami demam tinggi, batuk berdahak, atau nyeri saat bernapas?</h3>
+        <button onclick="diagnosis('Pneumonia atau Tuberculosis')">Yes</button>
+        <button onclick="nextStep(9)">No</button>
     </div>
-
     <div class="question-container" id="step9">
-      <h3>9. Apakah sesak napas disertai mengi, batuk berdahak, dan riwayat merokok?</h3>
-      <button onclick="diagnosis('Chronic Obstructive Pulmonary Disease (COPD)')">Yes</button>
-      <button onclick="nextStep(10)">No</button>
+        <h3>9. Apakah nyeri disertai rasa terbakar atau gatal di sekitar kulit dengan ruam kecil?</h3>
+        <button onclick="diagnosis('Herpes Zoster')">Yes</button>
+        <button onclick="nextStep(10)">No</button>
     </div>
-
     <div class="question-container" id="step10">
-      <h3>10. Apakah ada demam, penurunan berat badan, berkeringat pada malam hari, dan batuk kronis?</h3>
-      <button onclick="diagnosis('Tuberculosis (TB)')">Yes</button>
-      <button onclick="diagnosis('Reassess symptoms or consider rarer causes')">No</button>
+        <h3>10. Apakah nyeri berlangsung lama tanpa gejala lain dan berhubungan dengan stres atau kecemasan?</h3>
+        <button onclick="diagnosis('Nyeri Psikogenik (Psychogenic Chest Pain)')">Yes</button>
+        <button onclick="nextStep(11)">No</button>
     </div>
-  </div>
+    <div class="question-container" id="step11">
+        <h3>11. Apakah Anda sering merasa lelah, pusing, atau pucat dengan nyeri dada ringan?</h3>
+        <button onclick="diagnosis('Anemia')">Yes</button>
+        <button onclick="nextStep(12)">No</button>
+    </div>
+    <div class="question-container" id="step12">
+        <h3>12. Apakah Anda memiliki batuk berkepanjangan, sesak napas dengan riwayat merokok?</h3>
+        <button onclick="diagnosis('Penyakit Paru Kronis (COPD)')">Yes</button>
+        <button onclick="nextStep(13)">No</button>
+    </div>
+    <div class="question-container" id="step13">
+        <h3>13. Apakah nyeri muncul setelah kecelakaan atau benturan?</h3>
+        <button onclick="diagnosis('Cedera Tulang Rusuk atau Trauma Dada')">Yes</button>
+        <button onclick="nextStep(14)">No</button>
+    </div>
+    <div class="question-container" id="step14">
+        <h3>14. Apakah nyeri dada disertai tekanan darah sangat tinggi (>180/110 mmHg)?</h3>
+        <button onclick="diagnosis('Hipertensi Darurat (Hypertensive Emergency)')">Yes</button>
+        <button onclick="nextStep(15)">No</button>
+    </div>
+    <div class="question-container" id="step15">
+        <h3>15. Apakah Anda merasa sulit bernapas tanpa nyeri dada?</h3>
+        <button onclick="diagnosis('Pulmonary Embolism atau Chronic Respiratory Disease')">Yes</button>
+        <button onclick="diagnosis('Lakukan konsultasi ke dokter')">No</button>
+    </div>
+</div>
 
   <div id="result" class="hidden">
     <h2>Anda Didiagnosa:</h2>

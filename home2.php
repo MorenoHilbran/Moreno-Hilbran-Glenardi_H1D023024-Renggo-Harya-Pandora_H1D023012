@@ -30,9 +30,10 @@ function isActive($path) {
     </style>
 </head>
 
+<body>
 <nav class="navbar">
     <!-- Logo/Brand -->
-    <div><img src="assets/logo_base.png" class="brand" alt="WeCare""></div>
+    <div><img src="assets/logo_base.png" class="brand" alt="WeCare"></div>
     <!-- Menu Links -->
     <ul class="menu">
         <li>
@@ -46,17 +47,11 @@ function isActive($path) {
         </li>
     </ul>
     <div class="flex space-x-2 mr-10">
-    <?php
-        if (isset($_SESSION['username'])) {
-            echo '<h1 class="text-2xl font-bold mt-2 mr-2">Selamat Datang, ' . $_SESSION['username'] . '</h1>';
-        } else {
-            echo '';
-        }
-        ?>
+        <?php if (isset($_SESSION['username'])): ?>
+            <h1 class="text-2xl font-bold mt-2 mr-2">Selamat Datang, <?php echo $_SESSION['username']; ?></h1>
+        <?php endif; ?>
         <a href="login.php"><button class="button">Logout</button></a>
-
     </div>
-
 </nav>
 
 <header class="bg-no-repeat bg-cover bg-center h-screen" style="background-image: linear-gradient(rgba(56, 178, 172, 0.8), rgba(56, 178, 172, 0.8)), url(assets/header.jpeg)">
@@ -122,19 +117,18 @@ function isActive($path) {
     </div>
 </footer>
 
-
 </body>
 </html>
 
 <?php
-  // Function to render each card
-  function renderCard($image, $title) {
+// Function to render each card
+function renderCard($image, $title) {
     return '
       <div class="w-80 bg-white shadow-lg rounded-lg p-5 m-4 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
         <img src="'.$image.'" alt="'.$title.'" class="w-full h-80 object-cover rounded-lg" />
         <h3 class="text-xl font-semibold text-center text-teal-400 mt-4">'.$title.'</h3>
       </div>
     ';
-  }
+}
 ?>
 
