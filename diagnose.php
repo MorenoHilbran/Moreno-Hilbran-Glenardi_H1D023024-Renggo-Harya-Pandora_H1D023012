@@ -245,6 +245,6 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
     <button type="submit">Logout</button>
   </form>
 
-  <a href="home.php" class="<?php echo isActive('/home'); ?>">Home</a>
+  <a href="home2.php" class="<?php echo isActive('/home'); ?>">Home</a>
 </body>
 </html>

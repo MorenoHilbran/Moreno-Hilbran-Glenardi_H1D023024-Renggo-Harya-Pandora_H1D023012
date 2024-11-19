@@ -46,7 +46,6 @@ function isActive($path) {
     </ul>
     <div class="flex space-x-2 mr-10">
     <?php
-        session_start();
         if (isset($_SESSION['username'])) {
             echo '<h1 class="text-2xl font-bold mt-2 mr-2">Selamat Datang, ' . $_SESSION['username'] . '</h1>';
         } else {
