@@ -182,12 +182,83 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
 <script>
   // Question data
   const questions = [
-    { text: "Apakah Anda merasakan nyeri di dada?", yes: 2, no: 15 },
-    { text: "Apakah nyeri muncul tiba-tiba, sangat parah seperti robek, dan menjalar ke punggung?", yes: 'Diseksi Aorta (Aortic Dissection)', no: 3 },
-    { text: "Apakah nyerinya seperti ditekan berat, berlangsung >20 menit, menjalar ke lengan, rahang, atau punggung, disertai keringat dingin, mual, atau sulit bernapas?", yes: 'Serangan Jantung (Acute Coronary Syndrome)', no: 4 },
-    { text: "Apakah nyeri muncul saat beraktivitas dan hilang saat istirahat atau setelah menggunakan semprotan nitrat?", yes: 'Angina Stabil(Stable Angina)', no: 5 },
-    { text: "Apakah Anda merasa sulit bernapas tanpa nyeri dada?", yes: 'Pulmonary Embolism atau Chronic Respiratory Disease', no: 'Lakukan konsultasi ke dokter' }
-  ];
+    { 
+        text: "Apakah Anda merasakan nyeri di dada?", 
+        yes: 2, 
+        no: 15 
+    },
+    { 
+        text: "Apakah nyeri muncul tiba-tiba, sangat parah seperti robek, dan menjalar ke punggung?", 
+        yes: 'Diseksi Aorta (Aortic Dissection)', 
+        no: 3 
+    },
+    { 
+        text: "Apakah nyerinya seperti ditekan berat, berlangsung >20 menit, menjalar ke lengan, rahang, atau punggung, disertai keringat dingin, mual, atau sulit bernapas?", 
+        yes: 'Serangan Jantung (Acute Coronary Syndrome)', 
+        no: 4 
+    },
+    { 
+        text: "Apakah nyeri muncul saat beraktivitas dan hilang saat istirahat atau setelah menggunakan semprotan nitrat?", 
+        yes: 'Angina Stabil(Stable Angina)', 
+        no: 5 
+    },
+    { 
+        text: "Apakah nyeri terasa tajam, terlokalisasi di satu titik, dan lebih sakit jika ditekan atau tubuh bergerak?", 
+        yes: 'Nyeri Otot/Tulang (Costochondritis)', 
+        no: 6 
+    },
+    { 
+        text: "Apakah nyeri bertambah saat bernapas dalam, disertai demam atau sesak napas?", 
+        yes: 'Pneumonia atau Pulmonary Embolism', 
+        no: 7 
+    },
+    { 
+        text: "Apakah nyeri terasa panas, lebih buruk setelah makan atau saat berbaring, dan membaik dengan obat maag?", 
+        yes: 'GERD atau Peptic Ulcer', 
+        no: 8 
+    },
+    { 
+        text: "Apakah Anda mengalami demam tinggi, batuk berdahak, atau nyeri saat bernapas?", 
+        yes: 'Pneumonia atau Tuberculosis', 
+        no: 9 
+    },
+    { 
+        text: "Apakah nyeri disertai rasa terbakar atau gatal di sekitar kulit dengan ruam kecil?", 
+        yes: 'Herpes Zoster', 
+        no: 10 
+    },
+    { 
+        text: "Apakah nyeri berlangsung lama tanpa gejala lain dan berhubungan dengan stres atau kecemasan?", 
+        yes: 'Nyeri Psikogenik (Psychogenic Chest Pain)', 
+        no: 11 
+    },
+    { 
+        text: "Apakah Anda sering merasa lelah, pusing, atau pucat dengan nyeri dada ringan?", 
+        yes: 'Anemia', 
+        no: 12 
+    },
+    { 
+        text: "Apakah Anda memiliki batuk berkepanjangan, sesak napas dengan riwayat merokok?", 
+        yes: 'Penyakit Paru Kronis (COPD)', 
+        no: 13 
+    },
+    { 
+        text: "Apakah nyeri muncul setelah kecelakaan atau benturan?", 
+        yes: 'Cedera Tulang Rusuk atau Trauma Dada', 
+        no: 14 
+    },
+    { 
+        text: "Apakah nyeri dada disertai tekanan darah sangat tinggi (>180/110 mmHg)?", 
+        yes: 'Hipertensi Darurat (Hypertensive Emergency)', 
+        no: 15 
+    },
+    { 
+        text: "Apakah Anda merasa sulit bernapas tanpa nyeri dada?", 
+        yes: 'Pulmonary Embolism atau Chronic Respiratory Disease', 
+        no: 'Lakukan konsultasi ke dokter' 
+    }
+];
+
 
   // Elements
   const popup = document.getElementById('popup');
