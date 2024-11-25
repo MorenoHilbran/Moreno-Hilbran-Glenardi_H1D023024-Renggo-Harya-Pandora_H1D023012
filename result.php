@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
 </head>
 <body>
 <div class="container">
-    <div class="sidebar">
+    <div class="sidebar" style="position: fixed; height: auto;">
         <div class="header">
             <div class="list-item">
                 <a href="#">
@@ -88,7 +88,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
     </div>
    <!-- Laporan Diagnosa Pengguna -->
 <div class="mx-auto px-6 mt-8">
-    <h2 class="text-2xl font-bold mb-6">Laporan Diagnosa Pengguna</h2>
+    <h2 class="text-2xl font-bold mb-6 ml-64">Laporan Diagnosa Pengguna</h2>
 
     <!-- Pesan Sukses dan Error -->
     <?php if ($success): ?>
@@ -103,7 +103,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
     <?php endif; ?>
 
     <!-- Tabel Laporan -->
-    <div class="bg-white p-6 rounded shadow-lg">
+    <div class="bg-white p-6 rounded shadow-lg ml-64" >
         <div class="overflow-x-auto max-h-screen overflow-y-scroll">
             <table class="table-auto w-full border-collapse border border-gray-400">
                 <thead class="sticky top-0 bg-gray-200">

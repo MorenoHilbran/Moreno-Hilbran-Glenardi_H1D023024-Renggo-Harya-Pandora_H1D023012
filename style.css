@@ -13,9 +13,11 @@
     background-color: #38b2ac;
     width: 260px;
     padding: 24px;
-    display: flex;
+    /* display: flex; */
     box-sizing: border-box;
     flex-direction: column;
+    position: fixed;
+    height: auto;
 }
 
 .main-content {
