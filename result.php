@@ -92,12 +92,12 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
 
     <!-- Pesan Sukses dan Error -->
     <?php if ($success): ?>
-        <div class="bg-green-100 text-green-700 p-4 rounded mb-4">
+        <div class="bg-green-100 text-green-700 p-4 rounded mb-4 ml-64">
             <?= $success ?>
         </div>
     <?php endif; ?>
     <?php if ($error): ?>
-        <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+        <div class="bg-red-100 text-red-700 p-4 rounded mb-4 ml-64">
             <?= $error ?>
         </div>
     <?php endif; ?>

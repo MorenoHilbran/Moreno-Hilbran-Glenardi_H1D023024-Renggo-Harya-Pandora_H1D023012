@@ -86,18 +86,18 @@ if (!$result) {
 
         <!-- Pesan Sukses dan Error -->
         <?php if ($success): ?>
-            <div class="bg-green-100 text-green-700 p-4 rounded mb-4">
+            <div class="bg-green-100 text-green-700 p-4 rounded mb-4 ml-64">
                 <?= $success ?>
             </div>
         <?php endif; ?>
         <?php if ($error): ?>
-            <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+            <div class="bg-red-100 text-red-700 p-4 rounded mb-4 ml-64">
                 <?= $error ?>
             </div>
         <?php endif; ?>
 
         <!-- Tabel Data User -->
-        <div class="bg-white p-6 rounded shadow-lg ml-64 mr-20">
+        <div class="bg-white p-6 rounded shadow-lg ml-64">
             <div class="overflow-x-auto max-h-screen overflow-y-scroll">
                 <table class="table-auto w-full border-collapse border border-gray-400">
                     <thead class="sticky top-0 bg-gray-200">
