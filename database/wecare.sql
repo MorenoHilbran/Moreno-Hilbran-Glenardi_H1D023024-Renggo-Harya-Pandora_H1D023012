@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2024 at 09:59 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Waktu pembuatan: 04 Des 2024 pada 03.29
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -34,7 +34,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
@@ -44,31 +44,51 @@ INSERT INTO `admin` (`id_admin`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan`
+-- Struktur dari tabel `laporan`
 --
 
 CREATE TABLE `laporan` (
   `id_laporan` int(11) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
   `tanggal_periksa` datetime NOT NULL DEFAULT current_timestamp(),
-  `diagnosa` varchar(50) DEFAULT NULL
+  `diagnosa` varchar(50) DEFAULT NULL,
+  `tindak_lanjut` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `laporan`
+-- Dumping data untuk tabel `laporan`
 --
 
-INSERT INTO `laporan` (`id_laporan`, `username`, `tanggal_periksa`, `diagnosa`) VALUES
-(1, 'ahmad', '2024-11-17 21:29:36', 'Aortic Dissection'),
-(2, 'ahmad', '2024-11-17 21:35:46', 'Perform ECG'),
-(3, 'ahmad', '2024-11-17 21:37:01', 'stable angina'),
-(4, 'Demas Herdinanda', '2024-11-17 21:49:27', 'Chronic Obstructive Pulmonary Disease (COPD)'),
-(5, 'Demas Herdinanda', '2024-11-18 14:30:39', 'hgbcdhfajbs  x mdbbbcb  xzb bxnbjsdfg bskajhw');
+INSERT INTO `laporan` (`id_laporan`, `username`, `tanggal_periksa`, `diagnosa`, `tindak_lanjut`) VALUES
+(1, 'ahmad', '2024-11-17 21:29:36', 'Aortic Dissection', NULL),
+(2, 'ahmad', '2024-11-17 21:35:46', 'Perform ECG', NULL),
+(3, 'ahmad', '2024-11-17 21:37:01', 'stable angina', 'minum obat pereda nyeri\r\n'),
+(4, 'Demas Herdinanda', '2024-11-17 21:49:27', 'Chronic Obstructive Pulmonary Disease (COPD)', 'Suntik Mati'),
+(9, 'ahmad', '2024-11-19 23:22:44', 'Diseksi Aorta', 'Suntik mati'),
+(10, 'ahmad', '2024-11-19 23:22:54', 'Pulmonary Embolism atau Chronic Respiratory Diseas', NULL),
+(11, 'ahmad', '2024-11-19 23:23:03', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(12, 'ahmad', '2024-11-19 23:24:00', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(13, 'ahmad', '2024-11-19 23:24:41', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(14, 'ahmad', '2024-11-19 23:25:52', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(15, 'ahmad', '2024-11-19 23:26:23', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(16, 'ahmad', '2024-11-19 23:26:53', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(17, 'ahmad', '2024-11-19 23:27:49', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(18, 'ahmad', '2024-11-19 23:28:10', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(19, 'ahmad', '2024-11-19 23:28:45', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(20, 'ahmad', '2024-11-19 23:29:29', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(21, 'ahmad', '2024-11-19 23:29:34', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(22, 'ahmad', '2024-11-19 23:29:59', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(23, 'ahmad', '2024-11-19 23:30:18', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(24, 'ahmad', '2024-11-19 23:30:34', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(25, 'ahmad', '2024-11-19 23:30:54', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(26, 'ahmad', '2024-11-19 23:31:45', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(27, 'ahmad', '2024-11-19 23:33:11', 'Diseksi Aorta (Aortic Dissection)', NULL),
+(28, 'ahmad', '2024-11-22 15:28:08', 'Angina Stabil(Stable Angina)', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -78,55 +98,56 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`username`, `email`, `password`) VALUES
 ('ahmad', 'ahmad07@gmail.com', '$2y$10$FzUFwPMEjlwbRIfz5jDd4OTLAXNu17./Dh7bKMYtsjVJvoYVRhaJK'),
 ('Demas Herdinanda', 'demas.herdinanda@mhs.unsoed.ac.id', '$2y$10$ruCr0vMkW1o7L946k0NkoeUOUIj6gGzJALufZ6.rWJ5MDDmMtBKPm'),
-('Khansa', 'sasa123@gmail.com', '$2y$10$QebSVipaqGgnqZi1B0Avm.OuhD4Wt75fXAcmvfZnl1d5AsPyxZ92u');
+('Khansa', 'sasa123@gmail.com', '$2y$10$QebSVipaqGgnqZi1B0Avm.OuhD4Wt75fXAcmvfZnl1d5AsPyxZ92u'),
+('moreno', 'moren@gmail.com', '$2y$10$vPBf6jPxChbkFquGK6pQ8.NZu.BNXFZgajpr58xxRzm6X6Z..ZXeO');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `laporan`
+-- Indeks untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
   ADD PRIMARY KEY (`id_laporan`),
   ADD KEY `username` (`username`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `laporan`
+-- AUTO_INCREMENT untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `laporan`
+-- Ketidakleluasaan untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
   ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
