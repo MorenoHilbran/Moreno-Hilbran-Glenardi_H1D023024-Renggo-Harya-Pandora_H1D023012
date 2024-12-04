@@ -53,7 +53,7 @@ $totalHandledReports = ($resultHandledReports && mysqli_num_rows($resultHandledR
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
+        <div class="sidebar" style="position: fixed;">
             <div class="header">
                 <div class="list-item">
                     <a href="#">
@@ -91,12 +91,12 @@ $totalHandledReports = ($resultHandledReports && mysqli_num_rows($resultHandledR
                 </div>
             </div>
         </div>
-        <div class="main-content">
-                <h2 class="text-2xl font-bold p-6">Dashboard</h2>
-
+        
+        <div class="mx-auto px-6 mt-8">
+        <h2 class="text-2xl font-bold mb-6 ml-4">Dashboard</h2>
                 <!-- Statistik Singkat -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-white ml-3 p-6 rounded shadow border border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pl-6 pr-6">
+                    <div class="bg-white p-6 rounded shadow border border-gray-200">
                         <h3 class="text-lg font-bold text-gray-700">Jumlah Pasien Terdaftar</h3>
                         <p class="text-3xl font-bold text-teal-500 mt-2"><?= $totalPatients ?></p>
                     </div>
@@ -104,7 +104,7 @@ $totalHandledReports = ($resultHandledReports && mysqli_num_rows($resultHandledR
                         <h3 class="text-lg font-bold text-gray-700">Laporan Belum Ditindaklanjuti</h3>
                         <p class="text-3xl font-bold text-red-500 mt-2"><?= $totalPendingReports ?></p>
                     </div>
-                    <div class="bg-white mr-3 p-6 rounded shadow border border-gray-200">
+                    <div class="bg-white p-6 rounded shadow border border-gray-200">
                         <h3 class="text-lg font-bold text-gray-700">Laporan Sudah Ditindaklanjuti</h3>
                         <p class="text-3xl font-bold text-green-500 mt-2"><?= $totalHandledReports ?></p>
                     </div>

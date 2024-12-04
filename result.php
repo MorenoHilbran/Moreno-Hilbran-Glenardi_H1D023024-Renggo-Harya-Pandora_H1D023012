@@ -48,7 +48,7 @@ while ($row = mysqli_fetch_assoc($resultLaporan)) {
 </head>
 <body>
 <div class="container">
-    <div class="sidebar" style="position: fixed; height: auto;">
+    <div class="sidebar" style="position: fixed;">
         <div class="header">
             <div class="list-item">
                 <a href="#">
