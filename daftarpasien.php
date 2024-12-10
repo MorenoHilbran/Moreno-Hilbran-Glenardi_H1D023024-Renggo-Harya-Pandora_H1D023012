@@ -1,5 +1,8 @@
 <?php
 session_start();
+include("auth.php");
+checkAccess('admin'); // Hanya admin yang dapat mengakses halaman ini
+
 function isActive($path) {
     $currentPath = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
     return ($currentPath === $path) ? 'text-white font-bold bg-teal-600 rounded px-4 py-2' : 'text-teal-100 px-4 py-2 hover:bg-teal-400 hover:text-white rounded';

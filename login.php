@@ -1,20 +1,18 @@
 <?php
 include("connect.php");
 
-$isLogin = !isset($_GET['signup']); // Tentukan apakah menampilkan form login atau signup
-
 // Memulai sesi
 session_start();
 
+$isLogin = !isset($_GET['signup']); // Tentukan apakah menampilkan form login atau signup
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Tangkap input dari form, pastikan aman
     $inputUsername = isset($_POST['username']) ? $_POST['username'] : null;
     $inputPassword = isset($_POST['password']) ? $_POST['password'] : null;
 
-    // Validasi input
     if ($isLogin) {
         if ($inputUsername && $inputPassword) {
-            // 1. Periksa tabel user terlebih dahulu
+            // 1. Periksa tabel user
             $stmt = $connect->prepare("SELECT password FROM user WHERE username=?");
             if (!$stmt) {
                 die("Error preparing statement for user: " . $connect->error);
@@ -26,40 +24,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 if (password_verify($inputPassword, $row['password'])) {
-                    // Login user berhasil
+                    // Login sebagai user berhasil
                     $_SESSION['username'] = $inputUsername;
+                    $_SESSION['role'] = 'user'; // Set role sebagai user
                     header("Location: home2.php");
                     exit();
                 } else {
-                    // Password salah untuk user
                     echo "<script>alert('Password salah untuk user.');</script>";
                 }
             } else {
-                // Login admin
-$stmt = $connect->prepare("SELECT password FROM admin WHERE username=?");
-if (!$stmt) {
-    die("Error preparing statement for admin: " . $connect->error);
-}
-$stmt->bind_param("s", $inputUsername);
-$stmt->execute();
-$result = $stmt->get_result();
+                // 2. Periksa tabel admin
+                $stmt = $connect->prepare("SELECT password FROM admin WHERE username=?");
+                if (!$stmt) {
+                    die("Error preparing statement for admin: " . $connect->error);
+                }
+                $stmt->bind_param("s", $inputUsername);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    // Gunakan pencocokan teks biasa untuk admin
-    if ($inputPassword === $row['password']) {
-        // Login admin berhasil
-        $_SESSION['admin'] = $inputUsername;
-        header("Location: admin.php");
-        exit();
-    } else {
-        // Password salah untuk admin
-        echo "<script>alert('Password salah untuk admin.');</script>";
-    }
-} else {
-    // Username tidak ditemukan di tabel admin
-    echo "<script>alert('Username tidak ditemukan di user maupun admin.');</script>";
-}
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    if ($inputPassword === $row['password']) {
+                        // Login sebagai admin berhasil
+                        $_SESSION['username'] = $inputUsername;
+                        $_SESSION['role'] = 'admin'; // Set role sebagai admin
+                        header("Location: admin.php");
+                        exit();
+                    } else {
+                        echo "<script>alert('Password salah untuk admin.');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Username tidak ditemukan di tabel user maupun admin.');</script>";
+                }
             }
         } else {
             echo "<script>alert('Harap isi semua field untuk login.');</script>";
@@ -87,7 +83,16 @@ if ($result->num_rows > 0) {
         }
     }
 }
+
+// Fungsi validasi akses berdasarkan role
+function checkAccess($requiredRole) {
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== $requiredRole) {
+        header("Location: login.php"); // Redirect ke halaman akses ditolak
+        exit();
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+include("auth.php");
+checkAccess('admin'); // Hanya admin yang dapat mengakses halaman ini
+
 // Fungsi untuk menentukan apakah link aktif
 function isActive($path) {
     $currentPath = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)); // Ambil path dari URL

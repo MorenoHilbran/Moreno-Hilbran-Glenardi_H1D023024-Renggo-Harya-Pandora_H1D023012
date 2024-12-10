@@ -1,6 +1,8 @@
 <?php
 // Start session
 session_start();
+include("auth.php");
+checkAccess('user'); // Hanya user yang dapat mengakses halaman ini
 
 // Simulasi login - ganti ini dengan sistem login sesungguhnya
 if (!isset($_SESSION['username'])) {

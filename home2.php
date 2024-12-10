@@ -1,6 +1,9 @@
 <?php
 session_start();
 include ("connect.php");
+include("auth.php");
+checkAccess('user'); // Hanya user yang dapat mengakses halaman ini
+
 // Fungsi untuk memeriksa apakah path saat ini sama dengan route tertentu
 function isActive($path) {
     return ($_SERVER['REQUEST_URI'] === $path) ? 'text-white font-bold' : '';

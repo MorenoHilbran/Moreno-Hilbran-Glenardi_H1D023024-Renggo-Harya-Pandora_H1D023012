@@ -2,6 +2,8 @@
 
 // Koneksi ke database
 include 'connect.php';
+include("auth.php");
+checkAccess('admin'); // Hanya admin yang dapat mengakses halaman ini
 
 // Fungsi untuk memeriksa apakah path yang diberikan aktif atau tidak
 function isActive($path) {
