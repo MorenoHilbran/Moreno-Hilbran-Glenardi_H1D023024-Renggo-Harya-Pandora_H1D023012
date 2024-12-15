@@ -1,0 +1,19 @@
+[14-Dec-2024 12:34:59 UTC] PHP Warning:  include(koneksi.php): Failed to open stream: No such file or directory in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 12:34:59 UTC] PHP Warning:  include(koneksi.php): Failed to open stream: No such file or directory in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 12:34:59 UTC] PHP Warning:  include(): Failed opening 'koneksi.php' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 12:35:20 UTC] PHP Warning:  include(koneksi.php): Failed to open stream: No such file or directory in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 12:35:20 UTC] PHP Warning:  include(koneksi.php): Failed to open stream: No such file or directory in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 12:35:20 UTC] PHP Warning:  include(): Failed opening 'koneksi.php' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 16:01:19 UTC] PHP Warning:  include(koneksi.php): Failed to open stream: No such file or directory in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 16:01:19 UTC] PHP Warning:  include(koneksi.php): Failed to open stream: No such file or directory in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[14-Dec-2024 16:01:19 UTC] PHP Warning:  include(): Failed opening 'koneksi.php' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/index.php on line 3
+[15-Dec-2024 01:51:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/login.php:22
+Stack trace:
+#0 {main}
+  thrown in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/login.php on line 22
+[15-Dec-2024 01:55:40 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/login.php on line 216
+[15-Dec-2024 01:55:51 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/login.php on line 216
+[15-Dec-2024 01:57:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_stmt_get_result() in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/riwayat.php:35
+Stack trace:
+#0 {main}
+  thrown in /home/ifunsoed/wecare.ifunsoed23.xyz/WeCare/riwayat.php on line 35

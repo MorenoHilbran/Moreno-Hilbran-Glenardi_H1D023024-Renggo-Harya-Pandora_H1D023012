@@ -19,11 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             $stmt->bind_param("s", $inputUsername);
             $stmt->execute();
-            $result = $stmt->get_result();
+            $stmt->bind_result($userPassword);
 
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                if (password_verify($inputPassword, $row['password'])) {
+            if ($stmt->fetch()) {
+                if (password_verify($inputPassword, $userPassword)) {
                     // Login sebagai user berhasil
                     $_SESSION['username'] = $inputUsername;
                     $_SESSION['role'] = 'user'; // Set role sebagai user
@@ -33,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<script>alert('Password salah untuk user.');</script>";
                 }
             } else {
+                $stmt->close();
+
                 // 2. Periksa tabel admin
                 $stmt = $connect->prepare("SELECT password FROM admin WHERE username=?");
                 if (!$stmt) {
@@ -40,11 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 $stmt->bind_param("s", $inputUsername);
                 $stmt->execute();
-                $result = $stmt->get_result();
+                $stmt->bind_result($adminPassword);
 
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    if ($inputPassword === $row['password']) {
+                if ($stmt->fetch()) {
+                    if ($inputPassword === $adminPassword) {
                         // Login sebagai admin berhasil
                         $_SESSION['username'] = $inputUsername;
                         $_SESSION['role'] = 'admin'; // Set role sebagai admin
@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<script>alert('Username tidak ditemukan di tabel user maupun admin.');</script>";
                 }
             }
+            $stmt->close();
         } else {
             echo "<script>alert('Harap isi semua field untuk login.');</script>";
         }
@@ -78,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 echo "<script>alert('Pendaftaran gagal. Silakan coba lagi.');</script>";
             }
+            $stmt->close();
         } else {
             echo "<script>alert('Harap isi semua field untuk signup.');</script>";
         }
@@ -210,8 +212,8 @@ function checkAccess($requiredRole) {
                 </div>
                 <div class="input-field">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Masukkan Email" required>
-                </div>
+                    <input type="email" id="email" name="email" placeholder="Masukkan Email" required
+                    </div>
                 <div class="input-field">
                     <label for="password">Kata Sandi</label>
                     <input type="password" id="password" name="password" placeholder="Masukkan Kata Sandi" required>
