@@ -28,6 +28,10 @@ Aplikasi berbasis website untuk Diagnosis Penyakit Umum. Dibuat menggunakan Fram
 
 
 ## Admin Page
+### Username
+admin
+### Password
+admin123
 ![admin](https://github.com/user-attachments/assets/48a68ecf-41d3-459f-b8a8-c67e34593a10)
 ![admin (3)](https://github.com/user-attachments/assets/da5578f2-7c24-4ec1-8dfa-d9ba6919349d)
 ![admin (2)](https://github.com/user-attachments/assets/09062a80-0b12-4647-add8-666df921840b)
