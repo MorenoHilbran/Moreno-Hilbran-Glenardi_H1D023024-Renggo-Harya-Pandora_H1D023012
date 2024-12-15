@@ -24,6 +24,8 @@ Aplikasi berbasis website untuk Diagnosis Penyakit Umum. Dibuat menggunakan Fram
 ![deases information](https://github.com/user-attachments/assets/f381e578-9015-4537-8c64-ec5ef7e4f82e)
 ![diagnose popup](https://github.com/user-attachments/assets/1f5586a4-b4d7-4f1b-9177-fa540e8de102)
 ![riwayat](https://github.com/user-attachments/assets/a3ad60fb-bc0c-4819-bf3a-bace76c865c8)
+![riwayat](https://github.com/user-attachments/assets/8ab16061-0ae3-4e66-8812-79ae0ec91112)
+
 
 ## Admin Page
 ![admin](https://github.com/user-attachments/assets/48a68ecf-41d3-459f-b8a8-c67e34593a10)
