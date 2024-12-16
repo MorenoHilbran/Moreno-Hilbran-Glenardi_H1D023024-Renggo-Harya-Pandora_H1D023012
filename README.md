@@ -30,6 +30,7 @@ Aplikasi berbasis website untuk Diagnosis Penyakit berdasarkan gejala nyeri dada
 ## Admin Page
 ### Username
 admin1
+admin2
 ### Password
 admin123
 ![admin](https://github.com/user-attachments/assets/48a68ecf-41d3-459f-b8a8-c67e34593a10)
