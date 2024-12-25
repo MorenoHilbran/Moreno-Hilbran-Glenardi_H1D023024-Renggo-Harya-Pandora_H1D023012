@@ -1,6 +1,6 @@
 ﻿# WeCare-Website
  
-Aplikasi berbasis website untuk Diagnosis Penyakit berdasarkan gejala nyeri dada. Dibuat menggunakan Framework Tailwind dan PHP
+Aplikasi berbasis website untuk Diagnosis Penyakit berdasarkan gejala nyeri dada. Dibuat menggunakan Framework CSS Tailwind dan PHP
 
 ## 📱 Fitur
 ### User
